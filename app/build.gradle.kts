@@ -2,6 +2,7 @@ plugins {
     application
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
+    id("com.adyen.junit-plugin")
 }
 
 repositories {
