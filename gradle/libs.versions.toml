@@ -3,7 +3,7 @@
 
 [versions]
 junit-jupiter = "5.12.1"
-kotlin = "2.0.21"
+kotlin = "2.1.20"
 kaml = "0.65.0"
 clikt = "5.0.1"
 
@@ -14,3 +14,4 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter",      version.ref =
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

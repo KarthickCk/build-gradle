@@ -1,7 +1,7 @@
 plugins {
     application
     alias(libs.plugins.kotlin.jvm)
-    kotlin("plugin.serialization") version "2.0.21"
+    alias(libs.plugins.kotlin.serialization)
 }
 
 repositories {
@@ -26,4 +26,11 @@ application {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.named<JavaExec>("run") {
+    args = listOf(
+        "--config", "app/filters.yaml",
+        "--files", "src/main/java/com/adyen/filters/Main.kt"
+    )
 }
