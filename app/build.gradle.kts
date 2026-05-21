@@ -35,3 +35,7 @@ tasks.named<JavaExec>("run") {
         "--files", "src/main/java/com/adyen/filters/Main.kt"
     )
 }
+
+junitExtension {
+    outputDir = layout.buildDirectory.dir("foo")
+}
