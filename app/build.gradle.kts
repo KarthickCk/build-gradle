@@ -30,12 +30,9 @@ tasks.named<Test>("test") {
 }
 
 tasks.named<JavaExec>("run") {
+    workingDir = rootProject.projectDir
     args = listOf(
         "--config", "app/filters.yaml",
         "--files", "src/main/java/com/adyen/filters/Main.kt"
     )
-}
-
-junitExtension {
-    outputDir = layout.buildDirectory.dir("foo")
 }

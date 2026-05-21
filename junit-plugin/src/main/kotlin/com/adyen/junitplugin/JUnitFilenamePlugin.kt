@@ -37,7 +37,7 @@ class JUnitFilenamePlugin: Plugin<Project> {
                 augmentTask.configure {
                     inputDirs.from(testTask.reports.junitXml.outputLocation.get().asFile)
                     testSources.from(testSourceDirs)
-                    dependsOn(testTask)
+                    mustRunAfter(testTask)
                 }
                 testTask.finalizedBy(augmentTask)
             }

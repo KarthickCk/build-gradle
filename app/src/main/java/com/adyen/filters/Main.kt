@@ -10,6 +10,7 @@ import com.github.ajalt.clikt.parameters.options.default
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
 import com.github.ajalt.clikt.parameters.options.split
+import com.github.ajalt.clikt.parameters.options.transformAll
 import com.github.ajalt.clikt.parameters.types.path
 import java.nio.file.Path
 
@@ -27,12 +28,13 @@ class FilterCli : CliktCommand(name = "filters") {
 
     private val files by option("--files", help = "Changed file paths (space-separated)")
         .split(" ")
-        .required()
+        .transformAll { it.flatten().map(String::trim).filter(String::isNotBlank) }
 
     override fun run() {
         val filters = YamlLoader().load(config)
         val evaluator = FilterEvaluator(GlobMatcher())
-        val results = evaluator.evaluate(filters, files)
+        val cleanFiles = files.map(String::trim).filter(String::isNotBlank)
+        val results = evaluator.evaluate(filters, cleanFiles)
 
         EnvWriter().write(results, output)
 
